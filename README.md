@@ -1,16 +1,72 @@
 # clean_news_app
 
-A new Flutter project.
+# Flutter News App - Clean Architecture
 
-## Getting Started
+## 📌 Project Description
+A news application built with Flutter using Clean Architecture, BLoC pattern, and SOLID principles. The app fetches top headlines from a news API and displays them in a user-friendly interface.
 
-This project is a starting point for a Flutter application.
+## 🏗️ Folder Structure
 
-A few resources to get you started if this is your first Flutter project:
+ib/
+├── core/
+│ ├── utils/
+│ │ └── api_constants.dart
+│ └── network/
+│ └── dio_client.dart
+├── features/
+│ └── news/
+│ ├── data/
+│ │ ├── datasources/
+│ │ │ └── news_remote_data_source.dart
+│ │ ├── models/
+│ │ │ └── article_model.dart
+│ │ └── repositories/
+│ │ └── news_repository_impl.dart
+│ ├── domain/
+│ │ ├── entities/
+│ │ │ └── article.dart
+│ │ ├── repositories/
+│ │ │ └── news_repository.dart
+│ │ └── usecases/
+│ │ ├── get_news.dart
+│ │ └── get_top_headlines.dart
+│ └── presentation/
+│ ├── bloc/
+│ │ ├── news_bloc.dart
+│ │ ├── news_event.dart
+│ │ └── news_state.dart
+│ ├── pages/
+│ │ ├── news_detail_page.dart
+│ │ ├── news_list_page.dart
+│ │ └── news_page.dart
+│ └── widgets/
+│ └── news_item.dart
+└── main.dart
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🧩 Clean Architecture Layers
+1. **Data Layer**:
+   - `NewsRemoteDataSource`: Fetches data from API.
+   - `NewsRepositoryImpl`: Implements the repository interface.
+2. **Domain Layer**:
+   - `Article`: Entity class.
+   - `GetNews`: Use case for fetching news.
+3. **Presentation Layer**:
+   - `NewsBloc`: Manages state.
+   - `NewsListPage`: Displays news list.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🔧 SOLID Principles Applied
+- **Single Responsibility**: Each class has one purpose (e.g., `NewsBloc` handles state).
+- **Open/Closed**: Easy to extend (e.g., add new data sources).
+- **Liskov Substitution**: `NewsRepositoryImpl` replaces `NewsRepository` seamlessly.
+- **Interface Segregation**: Small interfaces (e.g., `NewsRepository`).
+- **Dependency Inversion**: Depend on abstractions (e.g., `GetNews` depends on `NewsRepository`).
+
+## 🛠️ Design Patterns
+- **BLoC**: State management.
+- **Repository**: Abstracts data sources.
+- **Dependency Injection**: `DioClient` injected into `NewsRemoteDataSource`.
+
+## 🚀 How to Run
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/your-username/flutter-news-app.git
